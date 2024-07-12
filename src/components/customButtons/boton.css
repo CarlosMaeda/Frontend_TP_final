@@ -1,0 +1,31 @@
+.boton {
+  --color: rgb(71, 36, 199);
+  --dark-color: color-mix(in srgb, var(--color) 60%, rgb(59, 2, 2));
+  --light-color: color-mix(in srgb, var(--color) 60%, white);
+
+  margin-top: 1rem;
+
+  border: 1px solid var(--dark-color);
+  border-bottom-width: 2px;
+  border-top-color: var(--light-color);
+  background: var(--color);
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.2rem;
+  color: var(--light-color);
+  padding: 0.25rem 0.75rem;
+  transition: transform 0.1s, border 0.1s;
+
+  &:active {
+    transform: scale(0.95);
+
+    background: var(--dark-color);
+  }
+}
+/* .boton {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px, 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0.8px;
+} */

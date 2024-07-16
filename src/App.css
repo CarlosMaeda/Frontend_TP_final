@@ -1,17 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Lilita+One&family=Raleway:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Times New Roman", Times, serif;
-}
-
-.container {
-  width: 100%;
-  margin: 50px auto;
-}
-
-.container h3 {
-  display: inline;
+  /* font-family: "Times New Roman", Times, serif; */
 }
 
 header {
@@ -26,11 +19,11 @@ header {
 
 .header {
   background-color: #222;
-  height: 50px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #fff;
 }
 
@@ -39,13 +32,13 @@ header {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: 0 24px;
+  padding: 0 5px;
 }
 
 .link {
   color: #fff;
   text-decoration: none;
-  padding: 0 24px;
+  padding: 0 10px;
 
   &:hover {
     color: #ccc;
@@ -56,40 +49,198 @@ header {
   }
 }
 
-.App {
-  width: 95vw;
-  margin: 0 auto;
-  padding: 0.5rem;
-  height: 100vh;
+.banner--container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../../src/assets/images/banner.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
-#form {
+.banner--content {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 98%;
+}
+
+.banner--title h1 {
+  font-size: 3rem;
+  color: #000000;
+  font-family: "Lilita One", cursive;
+}
+
+.banner--subtitle {
+  font-size: 2.5rem;
+  color: #000000;
+  font-family: "Lilita One", cursive;
+}
+
+.banner--subtitle .discount {
+  font-size: 3.8rem;
+  color: #9e6ae2;
+  text-shadow: 4px 3px 0px #7a7a7a, 14px 12px 6px rgba(206, 89, 55, 0.52);
+  font-family: "Lilita One", cursive;
+}
+
+.banner--button button {
+  font-size: 1.2rem;
+  color: #9e6ae2;
+  font-family: "Lilita One", cursive;
+  background-color: #000000;
+  border-radius: 25px;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.banner--button button:hover {
+  background-color: #9e6ae2;
+  color: #000000;
+}
+
+/* img {
+  max-width: 80%;
+}
+.container {
+  width: 100%;
+  margin: 10px auto;
+}
+
+.container h3 {
+  display: inline;
+} */
+
+.App {
+  width: 100%;
+  margin: 35px auto;
+  text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /*  border: #222 solid 1px; */
-}
-
-#form label {
-  display: inline-flex;
-  margin: 0.5rem;
-  width: 140px;
 }
 
 footer {
+  position: relative;
   background-color: #222;
-  height: 50px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #fff;
   width: 100%;
   position: fixed;
   z-index: 10;
+  top: 95.9%;
   bottom: 0;
   left: 0;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0 10px;
+}
+
+/* ----------Media Queries---------- */
+
+@media (min-width: 576px) {
+  .banner--title h1 {
+    font-size: 3.3rem;
+  }
+  .banner--subtitle {
+    font-size: 3rem;
+  }
+
+  .banner--subtitle .discount {
+    font-size: 4.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  header {
+    padding: 0 15px;
+  }
+
+  .header {
+    height: 50px;
+    font-size: 1.2rem;
+  }
+
+  .navbar {
+    padding: 0 24px;
+  }
+
+  .link {
+    padding: 0 15px;
+  }
+
+  .banner--title h1 {
+    font-size: 5rem;
+  }
+  .banner--subtitle {
+    font-size: 3.5rem;
+  }
+
+  .banner--subtitle .discount {
+    font-size: 4.5rem;
+  }
+
+  .banner--button button {
+    font-size: 1.6rem;
+    border-radius: 25px;
+    padding: 10px 20px;
+  }
+
+  footer {
+    height: 50px;
+    font-size: 1.6rem;
+  }
+}
+
+@media (min-width: 992px) {
+  header {
+    padding: 0 55px;
+  }
+
+  .header {
+    height: 50px;
+    font-size: 1.6rem;
+  }
+
+  .navbar {
+    padding: 0 30px;
+  }
+
+  .link {
+    padding: 0 25px;
+  }
+
+  .banner--title h1 {
+    font-size: 6rem;
+  }
+  .banner--subtitle {
+    font-size: 4.5rem;
+  }
+
+  .banner--subtitle .discount {
+    font-size: 6.5rem;
+  }
+
+  .banner--button button {
+    font-size: 1.6rem;
+    border-radius: 25px;
+    padding: 10px 20px;
+  }
+}
+
+@media (min-width: 1200px) {
+}
+
+@media (min-width: 1400px) {
 }

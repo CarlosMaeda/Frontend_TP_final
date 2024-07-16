@@ -1,15 +1,10 @@
 import React, { useState } from "react";
 import "./forms.css";
-import {
-  FaTimesCircle,
-  FaCheckCircle,
-  FaExclamationTriangle,
-  FaRegEye,
-  FaRegEyeSlash,
-} from "react-icons/fa";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { Input, Label } from "../customInput/Input";
 import Boton from "../customButtons/Boton";
 import { register } from "../../fetching/auth.fetching";
+import { Link } from "react-router-dom";
 
 const FormRegister = () => {
   const [name, setName] = useState("");
@@ -27,9 +22,9 @@ const FormRegister = () => {
 -Email
 -Password
 */
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(username, email, password, name, lastname);
     if (!!!email || !!!password || !!!username || !!!name || !!!lastname) {
       setErrorMessage("Todos los campos son obligatorios");
       console.log(errorMessage);
@@ -45,9 +40,7 @@ const FormRegister = () => {
     try {
       const user = { username, name, lastname, email, password };
 
-      const response = await register(
-        user
-      ); 
+      const response = await register(user);
       setUsername("");
       setName("");
       setLastname("");
@@ -58,13 +51,10 @@ const FormRegister = () => {
     } catch (error) {
       console.log("Error del catch:", error.message);
     }
-    const form = document.getElementById("form");
-    console.log("Se ha enviado el formulario");
   };
 
   const handleClickPsw = (e) => {
     e.preventDefault();
-    console.log("Se ha pulsado el botón");
     const inputPassword = document.getElementById("password");
     const visible = document.getElementById("ver");
     const oculto = document.getElementById("ocultar");
@@ -80,7 +70,6 @@ const FormRegister = () => {
   };
   const handleClickPsw2 = (e) => {
     e.preventDefault();
-    console.log("Se ha pulsado el botón");
     const inputPassword = document.getElementById("password2");
     const visible = document.getElementById("ver2");
     const oculto = document.getElementById("ocultar2");
@@ -99,7 +88,6 @@ const FormRegister = () => {
     setPassword2(e.target.value);
     const inputPassword = document.getElementById("password");
     const inputPassword2 = document.getElementById("password2");
-    console.log(inputPassword.value, inputPassword2.value);
     if (inputPassword.value !== inputPassword2.value) {
       console.log("Las contraseñas no coinciden");
     } else {
@@ -109,9 +97,9 @@ const FormRegister = () => {
 
   return (
     <div className="formulario--contenedor">
-      <h3>Formulario</h3>
+      <h2>Formulario de Registro</h2>
       <form id="formulario" className="formulario" onSubmit={handleSubmit}>
-        <div className="formulario--grupo" id="grupo--usuario">
+        <div className="formulario--grupo" id="grupo--nombre">
           <Label
             htmlFor="nombre"
             className="formulario--label"
@@ -127,15 +115,10 @@ const FormRegister = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-            <FaTimesCircle className="formulario--validacion-estado" />
           </div>
-          <p className="formulario--input-error">
-            El nombre debe estar compuesto por 4 a 16 caracteres y solo puede
-            letras.
-          </p>
         </div>
 
-        <div className="formulario--grupo" id="grupo--usuario">
+        <div className="formulario--grupo" id="grupo--apellido">
           <Label
             htmlFor="apellido"
             className="formulario--label"
@@ -151,14 +134,10 @@ const FormRegister = () => {
               value={lastname}
               onChange={(e) => setLastname(e.target.value)}
             />
-            <FaTimesCircle className="formulario--validacion-estado" />
           </div>
-          <p className="formulario--input-error">
-            El apellido debe estar compuesto por 4 a 16 caracteres y solo puede
-            letras.
-          </p>
         </div>
-        <div className="formulario--grupo" id="grupo--usuario">
+
+        <div className="formulario--grupo" id="grupo--username">
           <Label
             htmlFor="username"
             className="formulario--label"
@@ -174,13 +153,9 @@ const FormRegister = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
-            <FaTimesCircle className="formulario--validacion-estado" />
           </div>
-          <p className="formulario--input-error">
-            El ususario debe estar compuesto por 4 a 16 caracteres y solo puede
-            contener numeros, letras y guion bajo.
-          </p>
         </div>
+
         <div className="formulario--grupo" id="grupo--correo">
           <Label
             htmlFor="email"
@@ -197,19 +172,14 @@ const FormRegister = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <FaTimesCircle className="formulario--validacion-estado" />
           </div>
-          <p className="formulario--input-error">
-            El correo solo puede contener letras, numeros, puntos, guiones y
-            guion bajo.
-          </p>
         </div>
 
         <div className="formulario--grupo" id="grupo-password">
           <Label
             htmlFor="password"
             className="formulario--label"
-            text="Ingresa tu contraseña"
+            text="Ingresa una contraseña"
           ></Label>
           <div className="formulario--grupo-input">
             <Input
@@ -220,7 +190,6 @@ const FormRegister = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <FaTimesCircle className="formulario--validacion-estado" />
             <FaRegEye
               type="text"
               className="formulario--password-ver"
@@ -233,17 +202,13 @@ const FormRegister = () => {
               id="ocultar"
               onClick={handleClickPsw}
             />
-
-            <p className="formulario--input-error">
-              La contraseña debe tener netre 4 y 12 caracteres.
-            </p>
           </div>
         </div>
         <div className="formulario--grupo" id="grupo--password2">
           <Label
             htmlFor="password2"
             className="formulario--label"
-            text="Repite tu contraseña"
+            text="Valida tu contraseña"
           ></Label>
           <div className="formulario--grupo-input">
             <Input
@@ -254,7 +219,6 @@ const FormRegister = () => {
               value={password2}
               onChange={validarPassword2}
             />
-            <FaTimesCircle className="formulario--validacion-estado" />
             <FaRegEye
               type="text"
               className="formulario--password-ver"
@@ -267,28 +231,16 @@ const FormRegister = () => {
               id="ocultar2"
               onClick={handleClickPsw2}
             />
-
-            <p className="formulario--input-error">
-              Ambas contraseñas deben ser iguales.
-            </p>
           </div>
-        </div>
-        <div className="formulario--mensaje" id="formulario--mensaje">
-          <p>
-            <FaExclamationTriangle /> <b>Error:</b> Por favor rellena el
-            formulario correctamente.
-          </p>
         </div>
 
         <div className="formulario--grupo formulario--grupo-btn-enviar">
           <Boton text="Registrarse" className="formulario--btn" type="submit" />
 
-          <p
-            className="formulario--mensaje-exito"
-            id="formulario--mensaje-exito"
-          >
-            Formulario enviado exitosamente!
+          <p>
+            ¿Ya tienes una cuenta? <Link to="/login">Iniciar Sesión</Link>
           </p>
+          <p>Debes completar todos los campos para poder registrarse.</p>
         </div>
       </form>
     </div>

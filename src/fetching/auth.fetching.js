@@ -1,12 +1,12 @@
 import { HTTP, URL } from "./http";
-
+const URL_API = URL.URL_API_dev;
 const ROUTE = "/api/auth";
 
 export const login = async (user) => {
   try {
     /* const response = await HTTP.POST(`${URL.URL_API}${ROUTE}/login`, user); */
 
-    const response = await HTTP.POST(URL.URL_API_prod + ROUTE + "/login", user);
+    const response = await HTTP.POST(URL_API + ROUTE + "/login", user);
     console.log("Response del fetch:", response);
     if (!response.ok) {
       throw response;
@@ -22,10 +22,7 @@ export const register = async (user) => {
   try {
     /* const response = await HTTP.POST(`${URL.URL_API}${ROUTE}/login`, user); */
 
-    const response = await HTTP.POST(
-      URL.URL_API_prod + ROUTE + "/register",
-      user
-    );
+    const response = await HTTP.POST(URL_API + ROUTE + "/register", user);
     console.log(response);
     if (!response.ok) {
       throw response;
@@ -47,10 +44,7 @@ export const verificarToken = async () => {
       Authorization: token,
     };
     console.log("headers.append", headers);
-    const response = await HTTP.GET(
-      URL.URL_API_prod + ROUTE + "/verify-token",
-      headers
-    );
+    const response = await HTTP.GET(URL_API + ROUTE + "/verify-token", headers);
     console.log("virificar token", response);
     return response;
   } catch (error) {

@@ -10,6 +10,7 @@ import {
 import { Input, Label } from "../customInput/Input";
 import Boton from "../customButtons/Boton";
 import { login } from "../../fetching/auth.fetching";
+import { Link } from "react-router-dom";
 
 const FormLogin = () => {
   const [username, setUsername] = useState("");
@@ -19,10 +20,8 @@ const FormLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(username, email, password);
     if (!!!email || !!!password || !!!username) {
       setErrorMessage("Todos los campos son obligatorios");
-      console.log(errorMessage);
       setEmail("");
       setPassword("");
       setUsername("");
@@ -40,13 +39,10 @@ const FormLogin = () => {
     } catch (error) {
       console.log("Error del catch:", error);
     }
-    //const form = document.getElementById("form");
-    //console.log("Se ha enviado el formulario");
   };
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log("Se ha pulsado el botón");
     const inputPassword = document.getElementById("password");
     const visible = document.getElementById("ver");
     const oculto = document.getElementById("ocultar");
@@ -63,7 +59,7 @@ const FormLogin = () => {
 
   return (
     <div className="formulario--contenedor">
-      <h3>Formulario</h3>
+      <h2>Iniciar Sesión</h2>
       <form
         id="formulario"
         className="formulario  formulario-login"
@@ -85,13 +81,7 @@ const FormLogin = () => {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
-            <FaTimesCircle className="formulario--validacion-estado" />
-            <FaCheckCircle className="formulario--validacion-estado" />
           </div>
-          <p className="formulario--input-error">
-            El ususario debe estar compuesto por 4 a 16 caracteres y solo puede
-            contener numeros, letras y guion bajo.
-          </p>
         </div>
 
         <div className="formulario--grupo" id="grupo--correo">
@@ -110,15 +100,10 @@ const FormLogin = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <FaTimesCircle className="formulario--validacion-estado" />
           </div>
-          <p className="formulario--input-error">
-            El correo solo puede contener letras, numeros, puntos, guiones y
-            guion bajo.
-          </p>
         </div>
 
-        <div className="formulario--grupo" id="grupo--password">
+        <div className="formulario--grupo password" id="grupo--password">
           <Label
             htmlFor="password"
             className="formulario--label"
@@ -133,7 +118,6 @@ const FormLogin = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <FaTimesCircle className="formulario--validacion-estado" />
             <FaRegEye
               type="text"
               className="formulario--password-ver"
@@ -146,17 +130,7 @@ const FormLogin = () => {
               id="ocultar"
               onClick={handleClick}
             />
-
-            <p className="formulario--input-error">
-              La contraseña debe tener netre 4 y 12 caracteres.
-            </p>
           </div>
-        </div>
-        <div className="formulario--mensaje" id="formulario-mensaje">
-          <p>
-            <FaExclamationTriangle /> <b>Error:</b> Por favor rellena el
-            formulario correctamente.
-          </p>
         </div>
 
         <div className="formulario--grupo formulario--grupo-btn-enviar">
@@ -166,11 +140,8 @@ const FormLogin = () => {
             text="Iniciar Sesión"
           />
 
-          <p
-            className="formulario--mensaje-exito"
-            id="formulario--mensaje-exito"
-          >
-            Formulario enviado exitosamente!
+          <p>
+            ¿No tienes una cuenta? <Link to="/register">Registrate</Link>
           </p>
         </div>
       </form>

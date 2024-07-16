@@ -17,8 +17,35 @@ export const HTTP = {
 
     return response.json();
   },
+  POST_TOKEN: async (url, body) => {
+    const token = localStorage.getItem("token");
+    //console.log("localStorage.getItem", token);
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify(body),
+    });
+
+    return response.json();
+  },
+  PUT_TOKEN: async (url, body) => {
+    const token = localStorage.getItem("token");
+    //console.log("localStorage.getItem", token);
+    const response = await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: token,
+      },
+      body: JSON.stringify(body),
+    });
+
+    return response.json();
+  },
   PATCH: async (url, body) => {},
-  PUT: async (url, body) => {},
   DELETE: async (url) => {},
 };
 
